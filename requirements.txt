@@ -1,0 +1,9 @@
+yt-dlp
+moviepy
+opencv-python-headless
+Pillow
+instagrapi
+argparse
+diffusers
+transformers
+torch

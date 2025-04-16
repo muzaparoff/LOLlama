@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  lolllama:
+    build: .
+    container_name: lolllama
+    environment:
+      - YT_CREDENTIALS=${YT_CREDENTIALS}
+      - TIKTOK_COOKIES=${TIKTOK_COOKIES}
+      - IG_USER=${IG_USER}
+      - IG_PASS=${IG_PASS}
+    volumes:
+      - ./:/app
+    command: >
+      python main.py 
+      --video-url ${VIDEO_URL}
+      --title "${VIDEO_TITLE}"
