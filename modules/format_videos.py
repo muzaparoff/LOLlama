@@ -9,6 +9,19 @@ def format_video_for_platform(video_path: str, platform: str, output_dir: str) -
     Format the provided video for a specific social platform.
     For TikTok and Instagram, produce a vertical (9:16) version.
     """
+    logger.info("Formatting video for %s: %s", platform, video_path)
+    if not os.path.isfile(video_path):
+        logger.error("Video file does not exist: %s", video_path)
+        return video_path
+    if not os.path.isdir(output_dir):
+        logger.error("Output directory does not exist: %s", output_dir)
+        return video_path
+    if platform.lower() not in ["tiktok", "instagram"]:
+        logger.error("Unsupported platform: %s", platform)
+        return video_path
+    if not video_path.lower().endswith((".mp4", ".mkv", ".webm")):
+        logger.error("Unsupported video format: %s", video_path)
+        return video_path
     try:
         clip = VideoFileClip(video_path)
         w, h = clip.size
@@ -29,6 +42,7 @@ def format_video_for_platform(video_path: str, platform: str, output_dir: str) -
             resized.write_videofile(output_path, codec="libx264", audio_codec="aac")
             return output_path
         else:
+            logger.error("Unsupported platform for formatting: %s", platform)
             return video_path
     except Exception as e:
         logger.error("Failed to format video for %s: %s", platform, e)
