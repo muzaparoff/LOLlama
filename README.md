@@ -25,17 +25,18 @@
    ```bash
    git clone https://github.com/yourusername/LOLlama.git
    cd LOLlama
+   ```
 
 2.	Configure credentials:
     Provide your credentials for YouTube, TikTok, and Instagram either via environment variables or command‑line arguments. For example:
     
-    docker build -t lollama .
-      ```bash
+    ```bash
+    docker build -t lollama .  
       export YT_CREDENTIALS="path_to_youtube_credentials.json"
       export TIKTOK_COOKIES="your_tiktok_cookies"
       export IG_USER="your_instagram_username"
       export IG_PASS="your_instagram_password"
-      ```
+    ```
     - **Command-Line Arguments:** Pass the credentials directly when running the container:
       ```bash
       docker run --rm \
